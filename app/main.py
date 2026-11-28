@@ -40,7 +40,6 @@ async def status():
     rows = await db.pool.fetch(
         "SELECT DISTINCT ON (monitor_id) monitor_id, status, status_code, checked_at FROM monitoring_results ORDER BY monitor_id, checked_at DESC"
     )
-    print([dict(r) for r in rows])
     return [dict(r) for r in rows]
 
 

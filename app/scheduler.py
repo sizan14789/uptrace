@@ -1,5 +1,6 @@
-from app import db
 import asyncio
+
+from app import db
 from app.checker import check_site
 
 last_checked_at = {}
@@ -8,7 +9,6 @@ last_checked_at = {}
 async def tick():
     now = asyncio.get_event_loop().time()  # time since loop started
     monitors = await db.pool.fetch("SELECT * FROM monitors WHERE status = 'ACTIVE'")
-    results = []
 
     for m in monitors:
         if (
